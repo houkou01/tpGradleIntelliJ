@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    // Apply the application plugin to add support for building a CLI application
+    id 'application'
+    // The Distribution Plugin https://docs.gradle.org/current/userguide/distribution_plugin.html
+    id 'distribution'
+}
+
+group 'groupID'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    //mavenCentral()
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation 'net.lingala.zip4j:zip4j:2.1.3'
+    implementation 'commons-cli:commons-cli:1.4'
+
+}
+
+application {
+    // Define the main class for the application
+    mainClassName = 'monpackage.TestCommonsCLI33'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "monpackage.TestCommonsCLI33",
+                   "Class-Path": "zip4j-2.1.3.jar commons-cli-1.4.jar"
+    }
+}
+
